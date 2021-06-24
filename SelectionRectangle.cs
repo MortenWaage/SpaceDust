@@ -27,14 +27,8 @@ public class SelectionRectangle : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("SelectEnemy"))
-        {
-            enemyDrag = true;
-        }
-        else
-        {
-            enemyDrag = false;
-        }
+        if (Input.GetButton("SelectEnemy")) enemyDrag = true;
+        else enemyDrag = false;
         
 
         switch (enemyDrag)
