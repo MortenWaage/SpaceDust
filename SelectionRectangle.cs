@@ -221,7 +221,6 @@ public class SelectionRectangle : MonoBehaviour
 
         return listOfTargets;
     }
-
     void SetRectStartPosition()
     {
         if (Vector3.Distance(dragCheck, Input.mousePosition) > startDragDistance)
