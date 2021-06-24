@@ -5,27 +5,27 @@ using UnityEngine;
 
 public class SelectionRectangle : MonoBehaviour
 {
-    private Camera cam;
+    Camera cam;
     [SerializeField] RectTransform rectSelectSpriteGreen;
     [SerializeField] RectTransform rectSelectSpriteRed;
 
-    private Vector3 dragCheck;
-    private Vector3 rectStart;
-    private Vector3 rectEnd;
+    Vector3 dragCheck;
+    Vector3 rectStart;
+    Vector3 rectEnd;
 
-    private bool isDragging = false;
+    bool isDragging = false;
     bool enemyDrag = false;
 
-    private int startDragDistance = 3;
+    int startDragDistance = 3;
 
-    private void Start()
+    void Start()
     {
         rectSelectSpriteGreen.gameObject.SetActive(false);
         rectSelectSpriteRed.gameObject.SetActive(false);
         cam = Camera.main;
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetButton("SelectEnemy"))
         {
@@ -55,7 +55,7 @@ public class SelectionRectangle : MonoBehaviour
     }
 
 
-    private void GreenSelectionRectangleLoop()
+    void GreenSelectionRectangleLoop()
     {
         switch (isDragging)
         {
@@ -91,7 +91,7 @@ public class SelectionRectangle : MonoBehaviour
                 break;
         }
     }
-    private void RedSelectionRectangleLoop()
+    void RedSelectionRectangleLoop()
     {
         switch (isDragging)
         {
@@ -127,7 +127,7 @@ public class SelectionRectangle : MonoBehaviour
                 break;
         }
     }
-    private void DrawGreenRectangle()
+    void DrawGreenRectangle()
     {
         if (!rectSelectSpriteGreen.gameObject.activeInHierarchy)
             rectSelectSpriteGreen.gameObject.SetActive(true);
@@ -141,7 +141,7 @@ public class SelectionRectangle : MonoBehaviour
 
         rectSelectSpriteGreen.sizeDelta = new Vector2(sizeX, sizeY);
     }
-    private void DrawRedRectangle()
+    void DrawRedRectangle()
     {
         if (!rectSelectSpriteRed.gameObject.activeInHierarchy)
             rectSelectSpriteRed.gameObject.SetActive(true);
@@ -155,7 +155,7 @@ public class SelectionRectangle : MonoBehaviour
 
         rectSelectSpriteRed.sizeDelta = new Vector2(sizeX, sizeY);
     }
-    private void SetSelectionScreenRect()
+    void SetSelectionScreenRect()
     {
 
         Vector3 center = (rectStart + rectEnd) * 0.5f;
@@ -228,7 +228,7 @@ public class SelectionRectangle : MonoBehaviour
         return listOfTargets;
     }
 
-    private void SetRectStartPosition()
+    void SetRectStartPosition()
     {
         if (Vector3.Distance(dragCheck, Input.mousePosition) > startDragDistance)
         {
@@ -236,13 +236,13 @@ public class SelectionRectangle : MonoBehaviour
             rectEnd = rectStart;
         }
     }
-    private void ChangeGreenState(bool newState)
+    void ChangeGreenState(bool newState)
     {
         isDragging = newState;
         rectSelectSpriteGreen.gameObject.SetActive(newState);
         dragCheck = Vector3.zero;
     }
-    private void ChangeRedState(bool newState)
+    void ChangeRedState(bool newState)
     {
         isDragging = newState;
         rectSelectSpriteRed.gameObject.SetActive(newState);
